@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabs Killer Options</title>
+</head>
+<body>
+  <h1>Tabs Killer Options</h1>
+  <label for="threshold">Inactivity threshold (minutes):</label>
+  <input type="number" id="threshold" min="1" value="30">
+  <button id="save">Save</button>
+  <p id="status"></p>
+  <script>
+    // Load saved threshold
+    chrome.storage.sync.get(['threshold'], (result) => {
+      if (result.threshold) {
+        document.getElementById('threshold').value = result.threshold;
+      }
+    });
+    // Save threshold
+    document.getElementById('save').onclick = function() {
+      const value = parseInt(document.getElementById('threshold').value, 10);
+      chrome.storage.sync.set({threshold: value}, () => {
+        document.getElementById('status').textContent = 'Saved!';
+        setTimeout(() => document.getElementById('status').textContent = '', 1000);
+      });
+    };
+  </script>
+</body>
+</html> 

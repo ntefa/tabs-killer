@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Tabs Killer",
+  "version": "0.1.0",
+  "description": "Closes inactive tabs after a configurable period of inactivity.",
+  "permissions": [
+    "tabs",
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Tabs Killer"
+  },
+  "options_page": "options.html"
+} 
